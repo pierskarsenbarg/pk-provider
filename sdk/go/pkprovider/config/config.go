@@ -14,6 +14,3 @@ var _ = internal.GetEnvOrDefault
 func GetMyKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "pk-provider:myKey")
 }
-func GetVersion(ctx *pulumi.Context) string {
-	return config.Get(ctx, "pk-provider:version")
-}

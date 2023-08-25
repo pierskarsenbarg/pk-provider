@@ -77,7 +77,7 @@ func (Random) Create(ctx p.Context, name string, input RandomArgs, preview bool)
 
 func makeRandom(length int) string {
 	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	charset := []rune("abcdefghijklmnopqrstuvwpk-providerABCDEFGHIJKLMNOPQRSTUVWpk-provider0123456789")
+	charset := []rune("abcdefghijklmnopqrstuvwABCDEFGHIJKLMNOPQRSTUVWpk-provider0123456789")
 
 	result := make([]rune, length)
 	for i := range result {

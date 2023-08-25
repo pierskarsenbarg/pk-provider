@@ -20,7 +20,6 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     public readonly myKey!: pulumi.Output<string>;
-    public readonly version!: pulumi.Output<string>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -36,11 +35,7 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.myKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'myKey'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'version'");
-            }
             resourceInputs["myKey"] = args ? args.myKey : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -52,5 +47,4 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     myKey: pulumi.Input<string>;
-    version: pulumi.Input<string>;
 }

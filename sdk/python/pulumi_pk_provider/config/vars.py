@@ -19,7 +19,3 @@ class _ExportableConfig(types.ModuleType):
     def my_key(self) -> Optional[str]:
         return __config__.get('myKey')
 
-    @property
-    def version(self) -> Optional[str]:
-        return __config__.get('version')
-

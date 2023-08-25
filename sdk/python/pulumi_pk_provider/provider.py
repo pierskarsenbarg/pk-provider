@@ -14,13 +14,11 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 my_key: pulumi.Input[str],
-                 version: pulumi.Input[str]):
+                 my_key: pulumi.Input[str]):
         """
         The set of arguments for constructing a Provider resource.
         """
         pulumi.set(__self__, "my_key", my_key)
-        pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter(name="myKey")
@@ -31,15 +29,6 @@ class ProviderArgs:
     def my_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "my_key", value)
 
-    @property
-    @pulumi.getter
-    def version(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: pulumi.Input[str]):
-        pulumi.set(self, "version", value)
-
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -47,7 +36,6 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  my_key: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a Pk-provider resource with the given unique name, props, and options.
@@ -78,7 +66,6 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  my_key: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -91,9 +78,6 @@ class Provider(pulumi.ProviderResource):
             if my_key is None and not opts.urn:
                 raise TypeError("Missing required property 'my_key'")
             __props__.__dict__["my_key"] = my_key
-            if version is None and not opts.urn:
-                raise TypeError("Missing required property 'version'")
-            __props__.__dict__["version"] = version
         super(Provider, __self__).__init__(
             'pk-provider',
             resource_name,
@@ -104,9 +88,4 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="myKey")
     def my_key(self) -> pulumi.Output[str]:
         return pulumi.get(self, "my_key")
-
-    @property
-    @pulumi.getter
-    def version(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "version")
 

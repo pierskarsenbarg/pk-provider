@@ -11,5 +11,3 @@ from .. import _utilities
 
 myKey: Optional[str]
 
-version: Optional[str]
-
