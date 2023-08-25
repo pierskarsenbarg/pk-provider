@@ -1,5 +1,5 @@
-import * as xyz from "@pulumi/xyz";
+import * as pk-provider from "@pulumi/pk-provider";
 
-const random = new xyz.Random("my-random", { length: 24 });
+const random = new pk-provider.Random("my-random", { length: 24 });
 
 export const output = random.result;

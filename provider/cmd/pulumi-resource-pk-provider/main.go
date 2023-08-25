@@ -26,13 +26,14 @@ import (
 var Version string
 
 func main() {
-	p.RunProvider("xyz", Version,
+	p.RunProvider("pk-provider", Version,
 		// We tell the provider what resources it needs to support.
 		// In this case, a single custom resource.
 		infer.Provider(infer.Options{
 			Resources: []infer.InferredResource{
 				infer.Resource[Random, RandomArgs, RandomState](),
 			},
+			Config: infer.Config[*Config](),
 		}))
 }
 
@@ -76,11 +77,16 @@ func (Random) Create(ctx p.Context, name string, input RandomArgs, preview bool)
 
 func makeRandom(length int) string {
 	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	charset := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+	charset := []rune("abcdefghijklmnopqrstuvwpk-providerABCDEFGHIJKLMNOPQRSTUVWpk-provider0123456789")
 
 	result := make([]rune, length)
 	for i := range result {
 		result[i] = charset[seededRand.Intn(len(charset))]
 	}
 	return string(result)
+}
+
+type Config struct {
+	MyKey string `pulumi:"myKey"`
+	// Version string `pulumi:"version"`
 }

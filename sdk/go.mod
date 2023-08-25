@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/sdk/v3
+module github.com/pierskarsenbarg/pk-provider/sdk
 
 go 1.17
 

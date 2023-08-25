@@ -7,15 +7,23 @@ import typing
 # Export this package's modules as members:
 from .provider import *
 from .random import *
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumi_pk_provider.config as __config
+    config = __config
+else:
+    config = _utilities.lazy_import('pulumi_pk_provider.config')
+
 _utilities.register(
     resource_modules="""
 [
  {
-  "pkg": "xyz",
+  "pkg": "pk-provider",
   "mod": "index",
-  "fqn": "pulumi_xyz",
+  "fqn": "pulumi_pk_provider",
   "classes": {
-   "xyz:index:Random": "Random"
+   "pk-provider:index:Random": "Random"
   }
  }
 ]
@@ -23,9 +31,9 @@ _utilities.register(
     resource_packages="""
 [
  {
-  "pkg": "xyz",
-  "token": "pulumi:providers:xyz",
-  "fqn": "pulumi_xyz",
+  "pkg": "pk-provider",
+  "token": "pulumi:providers:pk-provider",
+  "fqn": "pulumi_pk_provider",
   "class": "Provider"
  }
 ]
