@@ -87,6 +87,6 @@ func makeRandom(length int) string {
 }
 
 type Config struct {
-	MyKey   string `pulumi:"myKey"`
-	Version string `pulumi:"version"`
+	MyKey string `pulumi:"myKey"`
+	//Version string `pulumi:"version"`
 }
